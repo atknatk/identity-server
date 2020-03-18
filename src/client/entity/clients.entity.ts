@@ -2,24 +2,23 @@ import {
   Column,
   Entity,
   Index,
-  OneToMany,
-  PrimaryGeneratedColumn
+  OneToMany
 } from "typeorm";
 // import { ClientClaims } from "./client-claims.entity";
-// import { ClientCorsOrigins } from "./client-cors-origins.entity";
-// import { ClientGrantTypes } from "./client-grant-types.entity";
-// import { ClientIdRestrictions } from "./client-id-restrictions.entity";
-// import { ClientPostLogoutRedirectUris } from "./client-post-logout-redirect-uris.entity";
-// import { ClientProperties } from "./client-properties.entity";
-// import { ClientRedirectUris } from "./client-redirect-uris.entity";
-// import { ClientScopes } from "./client-scopes.entity";
-// import { ClientSecrets } from "./client-secrets.entity";
+import { ClientCorsOrigins } from "./client-cors-origins.entity";
+import { ClientGrantTypes } from "./client-grant-types.entity";
+import { ClientIdRestrictions } from "./client-id-restrictions.entity";
+import { ClientPostLogoutRedirectUris } from "./client-post-logout-redirect-uris.entity";
+import { ClientProperties } from "./client-properties.entity";
+import { ClientRedirectUris } from "./client-redirect-uris.entity";
+import { ClientScopes } from "./client-scopes.entity";
+import { ClientSecrets} from "./client-secrets.entity";
 import { BaseEntity } from "src/entity/base.entity";
 
 @Index("ix_client_client_id", ["client_id"], { unique: true })
 @Index("pk_client", ["id"], { unique: true })
-@Entity("client", { schema: "identity-server" })
-export class Client extends BaseEntity{
+@Entity("clients", { schema: "identity-server" })
+export class Clients extends BaseEntity{
 
   @Column("boolean", { name: "enabled" })
   enabled: boolean;
@@ -161,51 +160,51 @@ export class Client extends BaseEntity{
   // )
   // clientClaims: ClientClaims[];
 
-  // @OneToMany(
-  //   () => ClientCorsOrigins,
-  //   clientCorsOrigins => clientCorsOrigins.client
-  // )
-  // clientCorsOrigins: ClientCorsOrigins[];
+  @OneToMany(
+    () => ClientCorsOrigins,
+    clientCorsOrigins => clientCorsOrigins.client
+  )
+  clientCorsOrigins: ClientCorsOrigins[];
 
-  // @OneToMany(
-  //   () => ClientGrantTypes,
-  //   clientGrantTypes => clientGrantTypes.client
-  // )
-  // clientGrantTypes: ClientGrantTypes[];
+  @OneToMany(
+    () => ClientGrantTypes,
+    clientGrantTypes => clientGrantTypes.client
+  )
+  clientGrantTypes: ClientGrantTypes[];
 
-  // @OneToMany(
-  //   () => ClientIdRestrictions,
-  //   clientIdPRestrictions => clientIdPRestrictions.client
-  // )
-  // clientIdRestrictions: ClientIdRestrictions[];
+  @OneToMany(
+    () => ClientIdRestrictions,
+    clientIdPRestrictions => clientIdPRestrictions.client
+  )
+  clientIdRestrictions: ClientIdRestrictions[];
 
-  // @OneToMany(
-  //   () => ClientPostLogoutRedirectUris,
-  //   clientPostLogoutRedirectUris => clientPostLogoutRedirectUris.client
-  // )
-  // clientPostLogoutRedirectUrises: ClientPostLogoutRedirectUris[];
+  @OneToMany(
+    () => ClientPostLogoutRedirectUris,
+    clientPostLogoutRedirectUris => clientPostLogoutRedirectUris.client
+  )
+  clientPostLogoutRedirectUris: ClientPostLogoutRedirectUris[];
 
-  // @OneToMany(
-  //   () => ClientProperties,
-  //   clientProperties => clientProperties.client
-  // )
-  // clientProperties: ClientProperties[];
+  @OneToMany(
+    () => ClientProperties,
+    clientProperties => clientProperties.client
+  )
+  clientProperties: ClientProperties[];
 
-  // @OneToMany(
-  //   () => ClientRedirectUris,
-  //   clientRedirectUris => clientRedirectUris.client
-  // )
-  // clientRedirectUrises: ClientRedirectUris[];
+  @OneToMany(
+    () => ClientRedirectUris,
+    clientRedirectUris => clientRedirectUris.client
+  )
+  clientRedirectUris: ClientRedirectUris[];
 
-  // @OneToMany(
-  //   () => ClientScopes,
-  //   clientScopes => clientScopes.client
-  // )
-  // clientScopes: ClientScopes[];
+  @OneToMany(
+    () => ClientScopes,
+    clientScopes => clientScopes.client
+  )
+  clientScopes: ClientScopes[];
 
-  // @OneToMany(
-  //   () => ClientSecrets,
-  //   clientSecrets => clientSecrets.client
-  // )
-  // clientSecrets: ClientSecrets[];
+  @OneToMany(
+    () => ClientSecrets,
+    clientSecrets => clientSecrets.client
+  )
+  clientSecrets: ClientSecrets[];
 }
