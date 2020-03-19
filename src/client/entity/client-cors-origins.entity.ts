@@ -8,7 +8,7 @@ import {
 import { Clients } from "./clients.entity";
 import { BaseEntity } from "src/entity/base.entity";
 
-@Index("ix_client_cors_origins_clientId", ["client_id"], {})
+//@Index("ix_client_cors_origins_clientId", ["client_id"], {})
 @Index("pk_client_cors_origins", ["id"], { unique: true })
 @Entity("client_cors_origins", { schema: "identity-server" })
 export class ClientCorsOrigins extends BaseEntity{
@@ -16,8 +16,8 @@ export class ClientCorsOrigins extends BaseEntity{
   @Column("character varying", { name: "origin", length: 150 })
   origin: string;
 
-  @Column("integer", { name: "client_id" })
-  clientId: number;
+  @Column("varchar", { name: "client_id" })
+  clientId: string;
 
   @ManyToOne(
     () => Clients,

@@ -9,7 +9,7 @@ import {
 import { Clients } from "./clients.entity";
 import { BaseEntity } from "src/entity/base.entity";
 
-@Index("ix_client_grant_types_client_id", ["client_id"], {})
+//@Index("ix_client_grant_types_client_id", ["client_id"], {})
 @Index("pk_client_grant_types", ["id"], { unique: true })
 @Entity("client_grant_types", { schema: "identity-server" })
 export class ClientGrantTypes extends BaseEntity{
@@ -17,8 +17,8 @@ export class ClientGrantTypes extends BaseEntity{
   @Column("character varying", { name: "grant_type", length: 250 })
   grantType: string;
 
-  @Column("integer", { name: "client_id" })
-  clientId: number;
+  @Column("varchar", { name: "client_id" })
+  clientId: string;
 
   @ManyToOne(
     () => Clients,

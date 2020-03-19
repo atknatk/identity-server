@@ -8,16 +8,16 @@ import {
 import { Clients } from "./clients.entity";
 import { BaseEntity } from "src/entity/base.entity";
 
-@Index("IX_ClientScopes_ClientId", ["clientId"], {})
-@Index("PK_ClientScopes", ["id"], { unique: true })
-@Entity("ClientScopes", { schema: "identity-server" })
+//@Index("ix_client_scopes_client_id", ["client_id"], {})
+@Index("pk_client_scopes", ["id"], { unique: true })
+@Entity("client_scopes", { schema: "identity-server" })
 export class ClientScopes extends BaseEntity{
 
   @Column("character varying", { name: "scope", length: 200 })
   scope: string;
 
-  @Column("integer", { name: "client_id" })
-  clientId: number;
+  @Column("varchar", { name: "client_id" })
+  clientId: string;
 
   @ManyToOne(
     () => Clients,

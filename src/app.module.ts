@@ -11,6 +11,7 @@ import { ResourceModule } from './resource/resource.module';
 import { OrganizationModule } from './organization/organization.module';
 import { PolicyModule } from './policy/policy.module';
 import { ClientModule } from './client/client.module';
+import { PermissionModule } from './permission/permission.module';
 
 @Module({
   imports: [
@@ -21,7 +22,8 @@ import { ClientModule } from './client/client.module';
     ResourceModule,
     OrganizationModule,
     PolicyModule,
-    ClientModule
+    ClientModule,
+    PermissionModule
   ],
   controllers: [AppController],
   providers: [AppService, ClaimService],

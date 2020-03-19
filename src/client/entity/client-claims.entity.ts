@@ -8,16 +8,15 @@ import {
 import { Clients } from "./clients.entity";
 import { BaseEntity } from "src/entity/base.entity";
 
-//@Index("ix_client_properties_client_id", ["client_id"], {})
-@Index("pk_client_properties", ["id"], { unique: true })
-@Entity("client_properties", { schema: "identity-server" })
-export class ClientProperties extends BaseEntity {
+//@Index("ix_client_claims_client_id", ["client_id"], {})
+@Index("pk_client_claims", ["id"], { unique: true })
+@Entity("client_claims", { schema: "identity-server" })
+export class ClientClaims extends BaseEntity{
 
+  @Column("character varying", { name: "type", length: 250 })
+  type: string;
 
-  @Column("character varying", { name: "key", length: 250 })
-  key: string;
-
-  @Column("character varying", { name: "value", length: 2000 })
+  @Column("character varying", { name: "value", length: 250 })
   value: string;
 
   @Column("varchar", { name: "client_id" })
@@ -25,7 +24,7 @@ export class ClientProperties extends BaseEntity {
 
   @ManyToOne(
     () => Clients,
-    clients => clients.clientProperties,
+    clients => clients.clientClaims,
     { onDelete: "CASCADE" }
   )
   @JoinColumn([{ name: "client_id", referencedColumnName: "id" }])

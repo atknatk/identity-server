@@ -9,17 +9,18 @@ import {
 } from "typeorm";
 import { ClaimGroup } from "./claim-group.entity";
 import { BaseEntity } from "src/entity/base.entity";
+import { OrganizationClaim } from "src/organization/entity/organization-claim.entity";
+import { RoleClaim } from "src/role/entity/role-claim.entity";
 // import { OrganizationClaim } from "./organization-claim.entity";
-// import { RoleClaim } from "./role-claim.entity";
 // import { UserClaim } from "./user-claim.entity";
 
-@Index("ix_claim_type_claim_group_id", ["claim_group_id"], {})
+//@Index("ix_claim_type_claim_group_id", ["claim_group_id"], {})
 @Index("pk_claim_type", ["id"], { unique: true })
 @Entity("claim_type", { schema: "identity-server" })
 export class ClaimType extends BaseEntity{
 
-  @Column("integer", { name: "claim_group_id" })
-  claimGroupId: number;
+  @Column("varchar", { name: "claim_group_id" })
+  claimGroupId: string;
 
   @Column("text", { name: "name", nullable: true })
   name: string | null;
@@ -32,17 +33,17 @@ export class ClaimType extends BaseEntity{
   @JoinColumn([{ name: "claim_group_id", referencedColumnName: "id" }])
   claimGroup: ClaimGroup;
 
-  // @OneToMany(
-  //   () => OrganizationClaim,
-  //   organizationClaim => organizationClaim.claimType
-  // )
-  // organizationClaims: OrganizationClaim[];
+  @OneToMany(
+    () => OrganizationClaim,
+    organizationClaim => organizationClaim.claimType
+  )
+  organizationClaims: OrganizationClaim[];
 
-  // @OneToMany(
-  //   () => RoleClaim,
-  //   roleClaim => roleClaim.claimType
-  // )
-  // roleClaims: RoleClaim[];
+  @OneToMany(
+    () => RoleClaim,
+    roleClaim => roleClaim.claimType
+  )
+  roleClaims: RoleClaim[];
 
   // @OneToMany(
   //   () => UserClaim,

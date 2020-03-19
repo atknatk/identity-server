@@ -3,13 +3,13 @@ import {
   Entity,
   Index,
   OneToMany,
-  PrimaryGeneratedColumn,
-  BaseEntity
 } from "typeorm";
-//import { OrganizationUser } from "./organization-user.entity";
+import { BaseEntity } from "src/entity/base.entity";
+import { UserPermission } from "./user-permission.entity";
+import { UserRole } from "./user-role.entity";
+import { OrganizationUser } from "src/organization/entity/organization-user.entity";
 // import { UserApplicationAdministrativeUnit } from "./user-application-administrative-unit.entity";
 // import { UserClaim } from "./user-claim.entity";
-// import { UserPermission } from "./user-permission.entity";
 // import { UserRole } from "./user-role.entity";
 // import { UserSpatialAdminUnit } from "./user-spatial-admin-unit.entity";
 
@@ -38,11 +38,11 @@ export class User extends BaseEntity {
   @Column("boolean", { name: "is_active" })
   isActive: boolean;
 
-  // @OneToMany(
-  //   () => OrganizationUser,
-  //   organizationUser => organizationUser.user
-  // )
-  // organizationUsers: OrganizationUser[];
+  @OneToMany(
+    () => OrganizationUser,
+    organizationUser => organizationUser.user
+  )
+  organizationUsers: OrganizationUser[];
 
   // @OneToMany(
   //   () => UserApplicationAdministrativeUnit,
@@ -56,17 +56,17 @@ export class User extends BaseEntity {
   // )
   // userClaims: UserClaim[];
 
-  // @OneToMany(
-  //   () => UserPermission,
-  //   userPermission => userPermission.user
-  // )
-  // userPermissions: UserPermission[];
+  @OneToMany(
+    () => UserPermission,
+    userPermission => userPermission.user
+  )
+  userPermissions: UserPermission[];
 
-  // @OneToMany(
-  //   () => UserRole,
-  //   userRole => userRole.user
-  // )
-  // userRoles: UserRole[];
+  @OneToMany(
+    () => UserRole,
+    userRole => userRole.user
+  )
+  userRoles: UserRole[];
 
   // @OneToMany(
   //   () => UserSpatialAdminUnit,

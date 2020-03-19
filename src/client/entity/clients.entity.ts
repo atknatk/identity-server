@@ -4,7 +4,7 @@ import {
   Index,
   OneToMany
 } from "typeorm";
-// import { ClientClaims } from "./client-claims.entity";
+import { ClientClaims } from "./client-claims.entity";
 import { ClientCorsOrigins } from "./client-cors-origins.entity";
 import { ClientGrantTypes } from "./client-grant-types.entity";
 import { ClientIdRestrictions } from "./client-id-restrictions.entity";
@@ -15,7 +15,7 @@ import { ClientScopes } from "./client-scopes.entity";
 import { ClientSecrets} from "./client-secrets.entity";
 import { BaseEntity } from "src/entity/base.entity";
 
-@Index("ix_client_client_id", ["client_id"], { unique: true })
+//@Index("ix_client_client_id", ["client_id"], { unique: true })
 @Index("pk_client", ["id"], { unique: true })
 @Entity("clients", { schema: "identity-server" })
 export class Clients extends BaseEntity{
@@ -154,11 +154,11 @@ export class Clients extends BaseEntity{
   })
   pairWiseSubjectSalt: string | null;
 
-  // @OneToMany(
-  //   () => ClientClaims,
-  //   clientClaims => clientClaims.client
-  // )
-  // clientClaims: ClientClaims[];
+  @OneToMany(
+    () => ClientClaims,
+    clientClaims => clientClaims.client
+  )
+  clientClaims: ClientClaims[];
 
   @OneToMany(
     () => ClientCorsOrigins,
