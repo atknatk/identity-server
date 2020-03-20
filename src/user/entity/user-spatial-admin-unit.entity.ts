@@ -7,7 +7,7 @@ import {
 } from "typeorm";
 import { User } from "./user.entity";
 import { BaseEntity } from "src/entity/base.entity";
-import { SpatialAdminUnit } from "src/shared/entity/spatial-admin-unit.entity";
+import { SpatialAdminUnit } from "src/entity/spatial-admin-unit.entity";
 
 @Index("pk_user_spatial_admin_unit", ["id"], { unique: true })
 //@Index("ix_user_spatial_admin_unit_spatial_admin_unit_id", ["spatial_admin_unit_id"], {})

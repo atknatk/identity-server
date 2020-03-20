@@ -4,8 +4,7 @@ import {
   Index,
   JoinColumn,
   ManyToOne,
-  OneToMany,
-  PrimaryGeneratedColumn
+  OneToMany
 } from "typeorm";
 import { Organization } from "./organization.entity";
 import { BaseEntity } from "src/entity/base.entity";

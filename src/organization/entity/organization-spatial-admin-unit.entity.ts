@@ -7,8 +7,7 @@ import {
 } from "typeorm";
 import { Organization } from "./organization.entity";
 import { BaseEntity } from "src/entity/base.entity";
-import { SpatialAdminUnit } from "src/shared/entity/spatial-admin-unit.entity";
-//import { SpatialAdminUnit } from "./spatial-admin-unit.entity";
+import { SpatialAdminUnit } from "src/entity/spatial-admin-unit.entity";
 
 // @Index("ix_organization_spatial_admin_unit_organization_id", ["organization_id"], {})
 // @Index(
