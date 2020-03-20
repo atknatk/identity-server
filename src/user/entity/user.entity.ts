@@ -8,10 +8,10 @@ import { BaseEntity } from "src/entity/base.entity";
 import { UserPermission } from "./user-permission.entity";
 import { UserRole } from "./user-role.entity";
 import { OrganizationUser } from "src/organization/entity/organization-user.entity";
+import { UserSpatialAdminUnit } from "./user-spatial-admin-unit.entity";
 // import { UserApplicationAdministrativeUnit } from "./user-application-administrative-unit.entity";
 // import { UserClaim } from "./user-claim.entity";
 // import { UserRole } from "./user-role.entity";
-// import { UserSpatialAdminUnit } from "./user-spatial-admin-unit.entity";
 
 @Index("pk_user", ["id"], { unique: true })
 @Entity("users", { schema: "identity-server" })
@@ -68,9 +68,9 @@ export class User extends BaseEntity {
   )
   userRoles: UserRole[];
 
-  // @OneToMany(
-  //   () => UserSpatialAdminUnit,
-  //   userSpatialAdminUnit => userSpatialAdminUnit.user
-  // )
-  // userSpatialAdminUnits: UserSpatialAdminUnit[];
+  @OneToMany(
+    () => UserSpatialAdminUnit,
+    userSpatialAdminUnit => userSpatialAdminUnit.user
+  )
+  userSpatialAdminUnits: UserSpatialAdminUnit[];
 }

@@ -3,11 +3,11 @@ import {
   Entity,
   Index,
   JoinColumn,
-  ManyToOne,
-  PrimaryGeneratedColumn
+  ManyToOne
 } from "typeorm";
 import { Organization } from "./organization.entity";
 import { BaseEntity } from "src/entity/base.entity";
+import { SpatialAdminUnit } from "src/shared/entity/spatial-admin-unit.entity";
 //import { SpatialAdminUnit } from "./spatial-admin-unit.entity";
 
 // @Index("ix_organization_spatial_admin_unit_organization_id", ["organization_id"], {})
@@ -35,11 +35,11 @@ export class OrganizationSpatialAdminUnit extends BaseEntity{
   @JoinColumn([{ name: "organization_id", referencedColumnName: "id" }])
   organization: Organization;
 
-  // @ManyToOne(
-  //   () => SpatialAdminUnit,
-  //   spatialAdminUnit => spatialAdminUnit.organizationSpatialAdminUnits,
-  //   { onDelete: "CASCADE" }
-  // )
-  // @JoinColumn([{ name: "spatial_admin_unit_id", referencedColumnName: "id" }])
-  // spatialAdminUnit: SpatialAdminUnit;
+  @ManyToOne(
+    () => SpatialAdminUnit,
+    spatialAdminUnit => spatialAdminUnit.organizationSpatialAdminUnits,
+    { onDelete: "CASCADE" }
+  )
+  @JoinColumn([{ name: "spatial_admin_unit_id", referencedColumnName: "id" }])
+  spatialAdminUnit: SpatialAdminUnit;
 }
